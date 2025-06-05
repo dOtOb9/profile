@@ -1,23 +1,14 @@
-import type { NextConfig } from "next";
+import createMDX from '@next/mdx';
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     domains: ["github.com"],
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
-    });
-    return config;
-  },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx']
 };
 
-module.exports = nextConfig;
-
-const withMDX = require('@next/mdx')();
-module.exports = withMDX({
-  // 他のNext.js設定
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+const withMDX = createMDX({
+  extension: /\.(md|mdx)$/,
 });
+
+module.exports = withMDX(nextConfig);
