@@ -5,9 +5,6 @@ const nextConfig = {
     domains: ["github.com"],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  plugin: [
-    require('@tailwindcss/typography'),
-  ],
 };
 
 const withMDX = createMDX({
