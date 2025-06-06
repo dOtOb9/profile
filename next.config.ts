@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
 
+const withMDX = require('@next/mdx')();
+
 const nextConfig: NextConfig = {
   images: {
-    domains: ["github.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        pathname: '/**',
+      },
+    ],
   },
   webpack(config) {
     config.module.rules.push({
@@ -12,12 +20,7 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };
 
-module.exports = nextConfig;
-
-const withMDX = require('@next/mdx')();
-module.exports = withMDX({
-  // 他のNext.js設定
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-});
+module.exports = withMDX(nextConfig);
