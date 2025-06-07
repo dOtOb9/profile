@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
+import remarkGfm from 'remark-gfm'
 
-const withMDX = require('@next/mdx')();
+const withMDX = require('@next/mdx')(
+  {
+    extension: /\.mdx?$/,
+    options: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [],
+    },
+  }
+);
 
 const nextConfig: NextConfig = {
   images: {
