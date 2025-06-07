@@ -4,7 +4,7 @@ export default function MarkdownPackage({
   children: React.ReactNode;
 }) {
   return (
-    <div className="prose mx-auto max-w-3xl w-full">
+    <div className="prose">
       {children}
     </div>
   );

@@ -5,12 +5,15 @@ import Me from "@/markdown/me.mdx";
 
 export default function About() {
     return (
-        <div className="w-screen flex flex-col">
+        <div className="flex flex-col min-h-screen pt-16 bg-blue-100 w-full">
             <BlogHeader pageName="About"/>
-            <MarkdownPackage>
-                <Me />
-            </MarkdownPackage>
-            
+            <div className="flex flex-col items-center justify-center flex-1">
+                <div className="bg-white p-8 sm:m-4">
+                    <MarkdownPackage>
+                        <Me />
+                    </MarkdownPackage>
+                </div>
+            </div>
         </div>
     );
 }

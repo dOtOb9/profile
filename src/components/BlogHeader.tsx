@@ -3,7 +3,7 @@ import HomeLink from '@/components/HomeLink';
 
 export default function BlogHeader({ pageName }: { pageName: string }) {
     return (
-        <header className="not-prose flex flex-row justify-between  mb-8 border-b-4 border-gray-300">
+        <header className="fixed top-0 w-full not-prose flex flex-row justify-between border-b-4 border-gray-300 bg-white">
             <HomeLink />
             <p className=" text-4xl font-bold m-2">{pageName}</p>
             <GitHubLink />
