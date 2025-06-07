@@ -20,7 +20,7 @@ export default function ProfileCard() {
               </div>
             </div>
             <div className="flex flex-col items-center mt-2">
-              <Link href="/about" className="ml-2 text-gray-600 hover:underline">details</Link>
+              <Link href="posts/about" className="ml-2 text-gray-600 hover:underline">details</Link>
             </div>
         </div>
         </div>
