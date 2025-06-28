@@ -15,7 +15,7 @@ export default function About() {
                       <Me />
                   </MarkdownPackage>
                 </div>
-                <SearchField category="about" />
+                <SearchField />
               </div>
             </div>
         </div>
