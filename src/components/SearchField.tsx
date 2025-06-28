@@ -5,7 +5,12 @@ import { useState } from 'react';
 import SearchBox from './SearchBox';
 import SearchPageList from './SearchPageList';
 
-export default function SearchField(  category: string = '') {
+interface SearchFieldProps {
+  category?: string;
+}
+
+export default function SearchField(props: SearchFieldProps) {
+  const { category = '' } = props;
   const [query, setQuery] = useState('');
 
   return (
