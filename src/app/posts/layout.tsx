@@ -3,5 +3,5 @@ export default function MdxLayout({ children }: { children: React.ReactNode }) {
     <div className="flex flex-1">
       {children}
     </div>
-  )
+  );
 }
