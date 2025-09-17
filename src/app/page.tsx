@@ -40,8 +40,22 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen pt-14 bg-blue-200 w-full">
       <div className="flex flex-col min-h-screen w-full items-center justify-center">
-        <div className={`flex flex-1 transition-all duration-[1600ms] ease-in-out relative ${showButton ? 'gap-12 justify-start' : 'flex-col items-center justify-center'}`}>  
-          <div className={`flex flex-col items-center justify-center transition-all duration-[1600ms] ease-in-out w-full lg:max-w-xl lg:min-w-[24rem] ${showButton ? 'lg:translate-x-[-20vw]' : ''}`}>
+        {/* PC: 横並び, モバイル: 縦並び */}
+        <div
+          className={`
+            flex flex-1 transition-all duration-[1600ms] ease-in-out relative
+            lg:flex-row lg:gap-12 lg:justify-start
+            flex-col items-center justify-center
+          `}
+        >
+          {/* 上部: プロフィール/タイトル/説明 (PC:左, モバイル:上) */}
+          <div
+            className={`
+              flex flex-col items-center justify-center transition-all duration-[1600ms] ease-in-out w-full
+              lg:max-w-xl lg:min-w-[24rem]
+              ${showButton ? 'lg:translate-x-[-20vw]' : ''}
+            `}
+          >
             <div className="p-8">
               <Image src="/profile.png" alt="Profile Picture" className="rounded-full" width={150} height={150} />
             </div>
@@ -50,15 +64,27 @@ export default function Home() {
               Explore articles on various topics including technology, programming, and more.
             </p>
           </div>
+          {/* 下部: ボタン (PC:右, モバイル:下) */}
           <div
-            className={`w-full lg:w-1/2 lg:max-w-xl lg:min-w-[24rem] flex items-center justify-center transition-all duration-[1600ms] ease-in-out absolute left-1/2 top-1/2 lg:top-0 lg:bottom-0 lg:left-auto lg:right-0 ${showButton ? 'opacity-100 lg:translate-x-[10vw] lg:top-1/2 lg:bottom-1/2 z-10' : 'opacity-0 lg:translate-x-[50%] lg:top-1/2 lg:bottom-1/2 z-0'}`}
+            className={`
+              w-full lg:w-1/2 lg:max-w-xl lg:min-w-[24rem]
+              flex items-center justify-center
+              transition-all duration-[1600ms] ease-in-out
+              lg:absolute lg:left-1/2 lg:top-1/2 lg:top-0 lg:bottom-0 lg:left-auto lg:right-0
+              ${showButton
+                ? 'opacity-100 lg:translate-x-[10vw] lg:top-1/2 lg:bottom-1/2 z-10'
+                : 'opacity-0 lg:translate-x-[50%] lg:top-1/2 lg:bottom-1/2 z-0'}
+              
+              /* モバイル: 下からフェードイン */
+              ${showButton ? 'sm:translate-y-0 sm:opacity-100' : 'sm:translate-y-8 sm:opacity-0'}
+            `}
             style={
               showButton
                 ? { pointerEvents: 'auto' }
-                : { transform: 'translate(-50%, -50%)', pointerEvents: 'none' }
+                : { pointerEvents: 'none' }
             }
           >
-            <div className = "flex flex-col w-3/4">
+            <div className="flex flex-col w-3/4">
               {blogSectionButtons}
             </div>
           </div>
