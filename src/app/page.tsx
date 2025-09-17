@@ -19,6 +19,24 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  const blogSectionList = [
+    "Newest Posts",
+    "AtCoder",
+    "TryHackMe",
+    "Kaggle",
+    "Daily life",
+  ];
+
+  const blogSectionButtons = blogSectionList.map((label, index) => (
+    <button
+      key={label}
+      className={`w-full mt-2 px-6 py-2 text-white rounded ${index % 2 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} transition`}
+      onClick={() => alert(`${label} feature coming soon!`)}
+    >
+      {label}
+    </button>
+  ));
+
   return (
     <div className="flex flex-col items-center min-h-screen pt-14 bg-blue-200 w-full">
       <div className="flex flex-col min-h-screen w-full items-center justify-center">
@@ -40,11 +58,9 @@ export default function Home() {
                 : { transform: 'translate(-50%, -50%)', pointerEvents: 'none' }
             }
           >
-            <button
-              className="w-full mt-6 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-            >
-              Newest Posts
-            </button>
+            <div className = "flex flex-col w-3/4">
+              {blogSectionButtons}
+            </div>
           </div>
         </div>
         <AboutMe onClick={handleScroll} />
