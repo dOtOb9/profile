@@ -42,8 +42,8 @@ export default function Home() {
             <div className="p-8">
               <HomeIcon />
             </div>
-            <h1 className="text-4xl font-bold mb-4">Welcome to My Blog !🎉</h1>
-            <p className="text-lg text-center max-w-xl">
+            <h1 className="text-4xl font-bold mb-4 text-black">Welcome to My Blog !🎉</h1>
+            <p className="text-lg text-center max-w-xl text-black">
               Explore articles on various topics including technology, programming, and more.
             </p>
           </div>
