@@ -2,6 +2,7 @@
 
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function BlogSection({ isShow = true, isLg }: { isShow?: boolean; isLg?: boolean }) {
   const [autoIsLg, setAutoIsLg] = useState<boolean | undefined>(undefined);
@@ -14,30 +15,30 @@ export default function BlogSection({ isShow = true, isLg }: { isShow?: boolean;
     }
   }, [isLg]);
   const effectiveIsLg = isLg !== undefined ? isLg : autoIsLg;
-    const blogSectionList = [
-    "Newest Posts",
-    "AtCoder",
-    "TryHackMe",
-    "Tech Ideas",
-    "Others",
+  const blogSectionList = [
+    { label: "Newest Posts", slug: "all" },
+    { label: "AtCoder", slug: "atcoder" },
+    { label: "TryHackMe", slug: "tryhackme" },
+    { label: "Tech Ideas", slug: "techideas" },
+    { label: "Others", slug: "others" },
   ];
 
-  const blogSectionButtons = blogSectionList.map((label, index) => (
-    <button
-      key={label}
-  className={`w-3/4 max-w-md mt-2 px-6 py-2 text-white rounded ${index % 2 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} transition`}
-      onClick={() => alert(`${label} feature coming soon!`)}
+  const blogSectionButtons = blogSectionList.map((item, index) => (
+    <Link
+      href={`/posts/tag/${item.slug}`}
+      key={item.slug}
+      className={`w-3/4 max-w-md mt-2 px-6 py-2 text-white text-center rounded ${index % 2 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} transition`}
     >
-      {label}
-    </button>
+      {item.label}
+    </Link>
   ));
 
   return (
     <div
       className={`
-        fex flex-col
+        flex flex-col
+        items-center justify-center
         w-full ${effectiveIsLg ? 'lg:w-1/2 lg:max-w-xl lg:min-w-[24rem]' : ''}
-        flex items-center justify-center
         transition-all duration-[1600ms] ease-in-out
         ${effectiveIsLg ? 'lg:absolute lg:left-1/2 lg:top-1/2 lg:top-0 lg:bottom-0 lg:left-auto lg:right-0' : ''}
         ${isShow
