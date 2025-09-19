@@ -17,9 +17,6 @@ export default function BlogSection({ isShow = true, isLg }: { isShow?: boolean;
   const effectiveIsLg = isLg !== undefined ? isLg : autoIsLg;
   const blogSectionList = [
     { label: "Newest Posts", slug: "all" },
-    { label: "AtCoder", slug: "atcoder" },
-    { label: "TryHackMe", slug: "tryhackme" },
-    { label: "Tech Ideas", slug: "techideas" },
     { label: "Others", slug: "others" },
   ];
 
