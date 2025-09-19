@@ -20,11 +20,18 @@ export default function BlogSection({ isShow = true, isLg }: { isShow?: boolean;
     { label: "Others", slug: "others" },
   ];
 
+
+  const handleSidebarClose = () => {
+    const checkbox = document.getElementById("sidebar-toggle") as HTMLInputElement | null;
+    if (checkbox) checkbox.checked = false;
+  };
+
   const blogSectionButtons = blogSectionList.map((item, index) => (
     <Link
       href={`/posts/tag/${item.slug}`}
       key={item.slug}
       className={`w-3/4 max-w-md mt-2 px-6 py-2 text-white text-center rounded ${index % 2 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} transition`}
+      onClick={handleSidebarClose}
     >
       {item.label}
     </Link>
