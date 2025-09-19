@@ -1,7 +1,7 @@
 import getSortedPostsData from '@/lib/posts';
 import Link from 'next/link';
 
-export default function BlogPage({ params }: { params: { slugs: string } }) {
+export default function BlogPage({ params }: { params: any }) {
   const allPostsData = getSortedPostsData({ Category: params.slugs });
 
   const postsLinks = allPostsData.map((post: any) => {
