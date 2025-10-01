@@ -6,7 +6,7 @@ import MarkdownPackage from "@/components/MarkdownPackage";
 
 // ビルド時に全記事を同期的に読み込んでメモリに保持するヘルパー関数
 const posts = (() => {
-  const dir = path.join(process.cwd(), "/src/markdown/blogs");
+  const dir = path.join(process.cwd(), "/src/markdown/blogs/");
   const files = fs.readdirSync(dir);
   return files
     .filter((file) => file.endsWith(".mdx"))
