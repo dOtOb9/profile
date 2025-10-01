@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 
 export default function getSortedPostsData({ Category }: { Category?: string } = {}) {
 
-  const postsDirectory = path.join(process.cwd(), '/src/markdown');
+  const postsDirectory = path.join(process.cwd(), '/src/markdown/blogs');
   const fileNames = fs.readdirSync(postsDirectory);
 
   const allPostsData = fileNames.map(fileName => {
