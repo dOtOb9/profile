@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MarkdownPackage from "@/components/MarkdownPackage";
+import TechStacks from '@/components/TechStacks';
 
 // ビルド時に全記事を同期的に読み込んでメモリに保持するヘルパー関数
 const posts = (() => {
@@ -19,6 +20,10 @@ const posts = (() => {
     });
 })();
 
+const mdxComponents = {
+  TechStacks,
+}
+
 export async function generateStaticParams() {
   return posts.map((post) => ({ slugs: post.slug }));
 }
@@ -30,7 +35,7 @@ export default function Page({ params }: { params: any }) {
   return (
     <div className="w-full lg:w-1/2 ml-auto h-screen flex flex-col items-center fixed right-0 top-0 overflow-y-auto overflow-x-hidden bg-white">
       <MarkdownPackage>
-        {content !== "Not found." ? <MDXRemote source={content} /> : <div>Not found.</div>}
+        {content !== "Not found." ? <MDXRemote source={content} components={mdxComponents} /> : <div>Not found.</div>}
       </MarkdownPackage>
     </div>
   );
