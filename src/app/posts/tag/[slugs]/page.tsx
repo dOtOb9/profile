@@ -20,7 +20,7 @@ export default function BlogPage({ params }: { params: any }) {
 
   return (
     <div className="w-full lg:w-1/2 ml-auto h-screen flex flex-col items-center fixed right-0 top-0 overflow-y-auto bg-white">
-      <h1 className="text-3xl font-bold m-6">Blog</h1>
+      <h1 className="text-3xl text-black font-bold m-6">Blog</h1>
       <div className="w-full flex flex-1 flex-col px-6">
         {postsLinks}
       </div>
