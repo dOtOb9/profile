@@ -28,8 +28,9 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slugs: post.slug }));
 }
 
-export default function Page({ params }: { params: any }) {
-  const slug = Array.isArray(params.slugs) ? params.slugs.join("") : params.slugs;
+export default async function Page({ params }: { params: any }) {
+  const resolvedParams = await params;
+  const slug = Array.isArray(resolvedParams.slugs) ? resolvedParams.slugs.join("") : await resolvedParams.slugs;
   const post = posts.find((p) => p.slug === slug);
   const content = post ? post.content : "Not found.";
   return (

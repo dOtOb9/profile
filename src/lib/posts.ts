@@ -23,24 +23,8 @@ export default function getSortedPostsData({ Category }: { Category?: string } =
   
   console.log("Category:", Category);
   let filteredPosts = allPostsData;
-  if (Category) {
-    if (Category === "others") {
-      filteredPosts = allPostsData.filter(post => !post.tags || post.tags.length === 0);
-    } else {
-      filteredPosts = allPostsData.filter(post => {
-        let tags: string[] = [];
-        if (Array.isArray(post.tags)) {
-          tags = post.tags.map((t: any) => String(t).trim());
-        } else if (typeof post.tags === 'string') {
-          tags = [post.tags.trim()];
-        }
-        return tags.some(tag => tag === Category);
-      });
-      // もし該当するPostがなければすべてを表示する
-      if (filteredPosts.length === 0) {
-        filteredPosts = allPostsData;
-      }
-    }
+  if (Category === "others") {
+    filteredPosts = allPostsData.filter(post => !post.tags || post.tags.length === 0);
   }
 
   const postsSortedByDate = filteredPosts.sort((a, b) => {
