@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MarkdownPackage from "@/components/MarkdownPackage";
 import TechStacks from '@/components/TechStacks';
+import Image from 'next/image';
 
 // ビルド時に全記事を同期的に読み込んでメモリに保持するヘルパー関数
 const posts = (() => {
@@ -22,6 +23,7 @@ const posts = (() => {
 
 const mdxComponents = {
   TechStacks,
+  Image,
 }
 
 export async function generateStaticParams() {
