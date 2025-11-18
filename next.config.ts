@@ -1,12 +1,14 @@
 import type { NextConfig } from "next";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const withMDX = require('@next/mdx')(
   {
     extension: /\.mdx?$/,
     options: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [],
+      remarkPlugins: [remarkMath, remarkGfm],
+      rehypePlugins: [rehypeKatex],
     },
   }
 );

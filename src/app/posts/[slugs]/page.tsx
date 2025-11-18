@@ -5,6 +5,10 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import MarkdownPackage from "@/components/MarkdownPackage";
 import TechStacks from '@/components/TechStacks';
 import Image from 'next/image';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'
 
 // ビルド時に全記事を同期的に読み込んでメモリに保持するヘルパー関数
 const posts = (() => {
@@ -26,6 +30,13 @@ const mdxComponents = {
   Image,
 }
 
+const mdxOptions = {
+  mdxOptions: {
+    remarkPlugins: [remarkMath, remarkGfm],
+    rehypePlugins: [rehypeKatex],
+  },
+};
+
 export async function generateStaticParams() {
   return posts.map((post) => ({ slugs: post.slug }));
 }
@@ -38,7 +49,7 @@ export default async function Page({ params }: { params: any }) {
   return (
     <div className="w-full lg:w-1/2 ml-auto h-screen flex flex-col items-center fixed right-0 top-0 overflow-y-auto overflow-x-hidden bg-white">
       <MarkdownPackage>
-        {content !== "Not found." ? <MDXRemote source={content} components={mdxComponents} /> : <div>Not found.</div>}
+        {content !== "Not found." ? <MDXRemote source={content} components={mdxComponents} options={mdxOptions} /> : <div>Not found.</div>}
       </MarkdownPackage>
     </div>
   );
