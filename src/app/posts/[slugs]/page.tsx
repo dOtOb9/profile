@@ -8,7 +8,9 @@ import Image from 'next/image';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypePrism from "rehype-prism-plus";
 import 'katex/dist/katex.min.css'
+import 'prismjs/themes/prism-tomorrow.css';
 
 // ビルド時に全記事を同期的に読み込んでメモリに保持するヘルパー関数
 const posts = (() => {
@@ -33,7 +35,7 @@ const mdxComponents = {
 const mdxOptions = {
   mdxOptions: {
     remarkPlugins: [remarkMath, remarkGfm],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypePrism],
   },
 };
 

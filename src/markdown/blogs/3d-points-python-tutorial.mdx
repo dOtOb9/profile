@@ -56,3 +56,48 @@ $ zxz $ 系のオイラー角 $ \alpha, \beta, \gamma $ を用いて回転行列
 <Image width={1000} height={1500} src="/3d-points-python-tutorial/chapter-2/solution_2-3.jpg" alt="solution_2-3"/>
 
 ### 問題 2.4
+並進と回転の処理の順番を変えると結果は変わるか？
+<details>
+<summary>ソースコード</summary>
+```python
+import numpy as np
+import open3d as o3d
+import copy
+
+
+mesh = o3d.geometry.TriangleMesh.create_coordinate_frame()
+
+# 並進
+t = [.5, .7, 1]
+mesh_t = copy.deepcopy(mesh).translate(t)
+
+# 回転
+R = o3d.geometry.get_rotation_matrix_from_yxz([np.pi/3, 0,0])
+print ("R: ", np.round(R, 7))
+
+R = o3d.geometry.get_rotation_matrix_from_axis_angle([0, np.pi/3, 0])
+print ("R: ", np.round(R, 7))
+
+R = o3d.geometry.get_rotation_matrix_from_quaternion([np.cos(np.pi/6), 0, np.sin(np.pi/6), 0])
+print ("R: ", np.round(R, 7))
+
+mesh_r = copy.deepcopy(mesh_t)
+mesh_r.rotate(R, center=[0,0,0])
+
+print("Type q to continue.")
+o3d.visualization.draw_geometries([mesh, mesh_t]) # 並進 -> 回転
+
+# 回転と並進
+T = np.eye(4)
+T[:3, :3] = R
+T[:3, 3] = t 
+mesh_r = copy.deepcopy(mesh).transform(T)
+print("Type q to continue.")
+o3d.visualization.draw_geometries([mesh, mesh_r]) # 回転 -> 並進
+```
+</details>
+<Image width={500} height={300} src="/3d-points-python-tutorial/chapter-2/solution_2-4.gif" alt="solution_2-4"/>
+#### 並進に関して
+この例だと絶対座標で並進しているため、最終的な物体の位置は変化しない．
+#### 回転に関して
+回転時の基準となる原点との相対位置が並進により変化しているため、回転の結果も変化する．
