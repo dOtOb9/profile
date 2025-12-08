@@ -102,8 +102,58 @@ o3d.visualization.draw_geometries([mesh, mesh_r]) # 回転 -> 並進
 #### 回転に関して
 回転時の基準となる原点との相対位置が並進により変化しているため、回転の結果も変化する．
 
-### 問題 2.5 ~ 2.7
-実装が書けない😭~そもそもOpen3Dとか初めてつかったし！分かるわけないやろ~
+### 問題 2.5
+ボクセル化を実装する．
+<details>
+<summary>ソースコード</summary>
+```python
+import sys
+import open3d as o3d
+import open3d.core as o3c
+import numpy as np
 
+
+def voxel_down_sample(last_pcd, voxel_size):
+    min_bound = last_pcd.get_min_bound() + 0.051 # 補正用の係数（実験値）
+
+    new_points = []
+
+    for point in last_pcd.points:
+        new_point = min_bound + ((point-min_bound) // voxel_size) * voxel_size + voxel_size / 2
+
+        new_points.append(new_point)
+
+    new_points = o3d.utility.Vector3dVector(np.unique(np.asarray(new_points), axis=0).astype(np.float64))
+
+    last_pcd.points = new_points
+    
+    return last_pcd
+
+filename = sys.argv[1]
+s = float(sys.argv[2])
+print("Loading a point cloud from", filename)
+pcd = o3d.io.read_point_cloud(filename)
+print(pcd)
+
+o3d.visualization.draw_geometries([pcd], zoom=0.3412,
+                                  front=[0.4257, -0.2125, -0.8795],
+                                  lookat=[2.6172, 2.0475, 1.532],
+                                  up=[-0.0694, -0.9768, 0.2024])
+
+downpcd = voxel_down_sample(pcd, voxel_size=s)
+print(downpcd)
+
+o3d.visualization.draw_geometries([downpcd], zoom=0.3412,
+                                  front=[0.4257, -0.2125, -0.8795],
+                                  lookat=[2.6172, 2.0475, 1.532],
+                                  up=[-0.0694, -0.9768, 0.2024])
+
+```
+</details>
+
+処理後の点群数が例題と一致していることを確認済み．今回は色の情報は無視しているので、将来的に実装するかも．
+
+
+### 問題 2.6、 2.7
 #### 未来の自分へ
 頑張ってください．
