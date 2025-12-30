@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MarkdownPackage from "@/components/MarkdownPackage";
 import TechStacks from '@/components/TechStacks';
+import NoteEmbed from '@/components/NoteEmbed';
 import Image from 'next/image';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -30,6 +31,7 @@ const posts = (() => {
 const mdxComponents = {
   TechStacks,
   Image,
+  NoteEmbed,
 }
 
 const mdxOptions = {
