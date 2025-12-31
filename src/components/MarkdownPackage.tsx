@@ -14,7 +14,7 @@ export default function MarkdownPackage({
     <div ref={ref} className="prose w-full max-w-5xl bg-white/70 p-8 sm:m-4">
       {children}
       <div className="flex justify-center">
-        <button onClick={scrollTop} className="mt-8 px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition">
+        <button onClick={scrollTop} className="my-8 px-4 py-2 bg-gray-400 text-white rounded-full hover:shadow-xl active:shadow-none transition shadow-md">
           go to top
         </button>
       </div>

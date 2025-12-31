@@ -51,7 +51,7 @@ export default async function Page({ params }: { params: any }) {
   const post = posts.find((p) => p.slug === slug);
   const content = post ? post.content : "Not found.";
   return (
-    <div className="w-full lg:w-1/2 ml-auto h-screen flex flex-col items-center fixed right-0 top-0 overflow-y-auto overflow-x-hidden bg-white">
+    <div className="w-full lg:w-1/2 ml-auto h-screen flex fixed right-0 top-0 overflow-y-auto overflow-x-hidden bg-white">
       <MarkdownPackage>
         {content !== "Not found." ? <MDXRemote source={content} components={mdxComponents} options={mdxOptions} /> : <div>Not found.</div>}
       </MarkdownPackage>

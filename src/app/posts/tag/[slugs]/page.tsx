@@ -9,7 +9,7 @@ export default async function BlogPage({ params }: { params: any }) {
     const { id, date, title } = post;
     return (
       <div key={id} className="w-full">
-        <Link href={`/posts/${id}`} className="hover:bg-gray-100 rounded-2xl w-full block p-8">
+        <Link href={`/posts/${id}`} className="shadow-md hover:shadow-lg active:shadow-none rounded-2xl w-full block p-8">
           <span className="text-xl font-semibold text-blue-600">
             {title || id}
           </span>

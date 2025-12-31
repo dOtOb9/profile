@@ -30,7 +30,7 @@ export default function BlogSection({ isShow = true, isLg }: { isShow?: boolean;
     <Link
       href={`/posts/tag/${item.slug}`}
       key={item.slug}
-      className={`w-3/4 max-w-md mt-2 px-6 py-2 text-white text-center rounded ${index % 2 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-blue-500 hover:bg-blue-600'} transition`}
+      className={`w-3/4 max-w-md mt-2 px-6 py-2 text-white text-center rounded-full shadow-md hover:shadow-xl active:shadow-none ${index % 2 ? 'bg-blue-400' : 'bg-blue-500'} transition`}
       onClick={handleSidebarClose}
     >
       {item.label}
